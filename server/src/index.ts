@@ -1,5 +1,5 @@
 import express from 'express';
-import { Database } from 'sqlite3';
+import { Database } from '@vscode/sqlite3';
 import * as sqlite from 'sqlite';
 import 'dotenv/config';
 
