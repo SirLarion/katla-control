@@ -5,8 +5,8 @@
   "main": "src/index.ts",
   "scripts": {
     "dev": "nodemon src/index.ts",
-    "build": "tsc",
-    "start": "node dist/index.js && cp -r src/static dist/"
+    "build": "tsc && cp -r src/static dist",
+    "start": "node dist/index.js"
   },
   "keywords": [],
   "author": "",
