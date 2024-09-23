@@ -6,7 +6,8 @@
   "scripts": {
     "testEncrypt": "ts-node scripts/testEncrypt.ts",
     "dev": "nodemon src/index.ts",
-    "start": "tsc && node dist/index.js"
+    "build": "tsc",
+    "start": "node dist/index.js"
   },
   "keywords": [],
   "author": "",
