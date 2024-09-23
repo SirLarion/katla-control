@@ -14,7 +14,7 @@ const ROUTES: RouteDefinition[] = [
   {
     path: '/',
     get: () => (_, res) => {
-      res.sendFile(path.join(__dirname, 'index.html'));
+      res.sendFile(path.join(__dirname, 'static', 'index.html'));
     },
   },
   {
