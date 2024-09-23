@@ -1,7 +1,6 @@
 import { Handler } from 'express';
 import { Database } from 'sqlite';
 
-import { decryptKatlaData } from '../lib/decrypt';
 import { isValidSensorData } from '../lib/utils';
 
 class InvalidSensorPayloadError extends Error {}
@@ -9,12 +8,8 @@ class InvalidSensorPayloadError extends Error {}
 export const createInsertSensorDataHandler =
   (db: Database): Handler =>
   async (req, res) => {
-    console.log(req.body);
-    const decryptedData = decryptKatlaData(req.body);
-    console.log('decrypted', decryptedData);
-
     try {
-      let data = JSON.parse(decryptedData);
+      let data = JSON.parse(req.body);
 
       if (!isValidSensorData(data)) {
         throw new InvalidSensorPayloadError(
@@ -34,13 +29,8 @@ export const createInsertSensorDataHandler =
         data.humidity
       );
     } catch (e) {
-      // If the data is malformed Syntax, the likely issue is that it was
-      // encrypted with the wrong key
-      if (e instanceof SyntaxError) {
-        res.status(401);
-      }
       // Invalid payload => Bad request
-      else if (e instanceof InvalidSensorPayloadError) {
+      if (e instanceof InvalidSensorPayloadError) {
         res.status(400);
       }
       // Otherwise something went wrong in the server
