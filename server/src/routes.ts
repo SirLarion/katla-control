@@ -20,7 +20,7 @@ const ROUTES: RouteDefinition[] = [
   {
     path: '/api/data',
     post: createInsertSensorDataHandler,
-    middleware: express.text(),
+    middleware: express.json(),
   },
 ];
 

@@ -9,7 +9,7 @@ export const createInsertSensorDataHandler =
   (db: Database): Handler =>
   async (req, res) => {
     try {
-      let data = JSON.parse(req.body);
+      let data = req.body;
 
       if (!isValidSensorData(data)) {
         throw new InvalidSensorPayloadError(
